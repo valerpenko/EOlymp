@@ -7,8 +7,6 @@ class Well:
         self.firstPipe = None
         self.secondPipe = None
 
-
-
 well1 = Well(1)
 well2 = Well(2)
 well3 = Well(3)
