@@ -24,34 +24,41 @@ def matchesForUpgrade(n_rest,width,height):
     # returns
     # 1 match count for upgrade to build n_rest cubes
     # 2 count of remain cubes
-    matches=0
-    cubes_added=0
-    matches += 8
-    cubes_added += 1
+    matches=8
+    cubes_added = 1
     n_rest -= 1
-    while n_rest>0 and cubes_added<width*height:
+    if n_rest == 0:
+        return matches, 0
+    while cubes_added<width*height:
         distance=0
         matches+=5
         cubes_added+=1
         n_rest-=1
-        for i in range(distance+1):
+        if n_rest == 0:
+            return matches, 0
+        for i in range(distance):
             matches += 3
             cubes_added += 1
             n_rest -= 1
+            if n_rest==0:
+                return matches, 0
         matches+=5
         cubes_added+=1
         n_rest-=1
-
-        distance += 1
-        for i in range(distance+1):
+        if n_rest == 0:
+            return matches, 0
+        distance -= 1
+        for i in range(distance):
             matches += 3
             cubes_added += 1
             n_rest -= 1
+            if n_rest==0:
+                return matches, 0
     return matches, n_rest
 
 
 #n=int(input())  #количество кубиков
-l=[i for i in range(1,28)]
+l=[i for i in range(1,20)]
 for n in l:
     k=math.floor(math.pow(n,1./3.))
     m_kcube=3*(k+1)*(k+1)*k
