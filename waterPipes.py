@@ -1,23 +1,52 @@
 
 
-class Well:
-    def __init__(self, wellId):
 
-        self.wellId = wellId
-        self.firstPipe = None
-        self.secondPipe = None
+# connections = []
+#
+# def Pipeline(wellId1, wellId2):
+#
+#     wellId1 = wellId1
+#     wellId2 = wellId2
+#     connections.append((wellId1,wellId2))
+#
+# def swapPipes(con):
+#     result = [(pipe[1], pipe[0]) for pipe in con]
+#     return result
+#
+#
+#
+# Pipeline(1, 2)
+# Pipeline(1, 3)
+# Pipeline(1, 4)
+# Pipeline(2, 3)
+# Pipeline(2, 4)
+# Pipeline(3, 4)
+#
+# print(connections)
+# print(swapPipes(connections))
+
+connections = []
+
+def Pipeline(distNum):
+    temp1 = []
+    temp2 = []
+    for i in range(1, distNum + 1):
+        temp1.append(i)
+        temp2.append(i)
+    for a in temp1:
+        for b in temp2:
+            if a != b and a < b:
+                connections.append((a, b))
+    #[(a, b) for a in temp1 for b in temp2 if a != b and a < b]
+
+def swapPipes(con):
+    result = [(pipe[1], pipe[0]) for pipe in con]
+    return result
+
+districtNum = int(input())
+
+Pipeline(districtNum)
+print(connections)
+print(swapPipes(connections))
 
 
-
-well1 = Well(1)
-well2 = Well(2)
-well3 = Well(3)
-well4 = Well(4)
-
-well1.firstPipe = well2
-well1.secondPipe = well3
-
-well2.firstPipe = well3
-well2.secondPipe = well4
-
-well3.secondPipe = well4
