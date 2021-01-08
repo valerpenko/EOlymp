@@ -24,21 +24,15 @@
 
 connections = []
 
-def Pipeline(distNum):
-    temp1 = []
-    temp2 = []
-    for i in range(1, distNum + 1):
-        temp1.append(i)
-        temp2.append(i)
-    for a in temp1:
-        for b in temp2:
-            if a != b and a < b:
-                connections.append((a, b))
-    #[(a, b) for a in temp1 for b in temp2 if a != b and a < b]
-
 def swapPipes(con):
     result = [(pipe[1], pipe[0]) for pipe in con]
     return result
+
+def Pipeline(distNum):
+    for i in range(1, distNum + 1):
+        if i != i + 1 and i < i + 1:
+                connections.append((i, i + 1))
+    #[connections.append((i, i + 1)) for i in range(1, distNum + 1) if i != i + 1 and i < i + 1]
 
 districtNum = int(input())
 
