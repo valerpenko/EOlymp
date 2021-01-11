@@ -41,24 +41,29 @@
 # print(swapPipes(connections))
 #===============================================
 
+city=[1,2,3,4]
+visitList=[]
 def GoodCity():
-    for srcRegion in city:
+    for srcRegion in city:  #each city region acts as a single water source
+        global visitList
+        visitList = []
         for region1 in city:
-            region1==srcRegion:
-            continue
-            visitList=[]
-            if !region1.HasConnectionWith(srcRegion):
-                return false
-    return true
+            if region1==srcRegion:
+                continue
+                #visitList=[]
+            if  !region1.HasConnectionWith(srcRegion):
+                return False
+    return True
 
 
-def HasConnectionWith(srcRegion):
-    if self in visitList:
-        return false
+def HasConnectionWith(srcRegion, toRegion):
+    global visitList
+    if toRegion in visitList:
+        return False
     else:
-        visitList.Append(self)
-        if self.DirectConnectedWith(srcRegion):
-            return true
+        visitList.Append(toRegion)
+        if toRegion.DirectConnectedWith(srcRegion):
+            return True
         else:
             for region in self.SrcConnections:
                 return region.HasConnectionWith(srcRegion)
