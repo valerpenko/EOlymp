@@ -17,11 +17,24 @@ def calculateFibonacci(num):
             fibRepo[num]=(calculateFibonacci(num - 1) + calculateFibonacci(num - 2)+ calculateFibonacci(num - 3) + calculateFibonacci(num - 4))
             return fibRepo[num]
 
-#numbers = int(input())
+def digitLimil(lim):
+    string = str(lim)
+    if len(string) <= 2008:
+        return True
 k=0
 fibRepo=dict()
-input = 40
-list = [calculateFibonacci(x) for x in range(1,input + 1)]
-print(list)
-print(k)
+#inp = 40
+inp = int(input())
+list = [calculateFibonacci(x) for x in range(1,inp + 1)]
+# print(list)
+# print(k)
+
+countList = {count:fibNum for count, fibNum in enumerate(list,1)}
+print(countList)
+
+n = int(input())
+search = input().split()[:n]
+#search = input().split()
+for num in search:
+    print(countList[int(num)])
 
