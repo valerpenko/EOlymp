@@ -21,39 +21,40 @@ import math
 #                 return matches, 0
 #     return matches, n_rest
 def matchesForUpgrade(n_rest,width,height):
+    # trying to build 1 layer of cubes under width x height plateu
     # returns
     # 1 match count for upgrade to build n_rest cubes
     # 2 count of remain cubes
     matches=8
     cubes_added = 1
     n_rest -= 1
-    if n_rest == 0:
-        return matches, 0
+    if cubes_added==width*height or n_rest==0:
+        return matches, n_rest
     while cubes_added<width*height:
         distance=0
         matches+=5
         cubes_added+=1
         n_rest-=1
-        if n_rest == 0:
-            return matches, 0
+        if cubes_added==width*height or n_rest==0:
+            return matches, n_rest
         for i in range(distance):
             matches += 3
             cubes_added += 1
             n_rest -= 1
-            if n_rest==0:
-                return matches, 0
+            if cubes_added==width*height or n_rest==0:
+                return matches, n_rest
         matches+=5
         cubes_added+=1
         n_rest-=1
-        if n_rest == 0:
-            return matches, 0
-        distance -= 1
+        if cubes_added==width*height or n_rest==0:
+            return matches, n_rest
+        distance += 1
         for i in range(distance):
             matches += 3
             cubes_added += 1
             n_rest -= 1
-            if n_rest==0:
-                return matches, 0
+            if cubes_added==width*height or n_rest==0:
+                return matches, n_rest
     return matches, n_rest
 
 
