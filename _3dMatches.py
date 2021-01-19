@@ -30,24 +30,27 @@ def matchesForUpgrade(n_rest,width,height):
     n_rest -= 1
     if cubes_added==width*height or n_rest==0:
         return matches, n_rest
+    distance=0
     while cubes_added<width*height:
-        distance=0
         matches+=5
         cubes_added+=1
         n_rest-=1
         if cubes_added==width*height or n_rest==0:
             return matches, n_rest
+        #=====================
         for i in range(distance):
             matches += 3
             cubes_added += 1
             n_rest -= 1
             if cubes_added==width*height or n_rest==0:
                 return matches, n_rest
+        #====================
         matches+=5
         cubes_added+=1
         n_rest-=1
         if cubes_added==width*height or n_rest==0:
             return matches, n_rest
+        #======================
         distance += 1
         for i in range(distance):
             matches += 3
@@ -55,6 +58,7 @@ def matchesForUpgrade(n_rest,width,height):
             n_rest -= 1
             if cubes_added==width*height or n_rest==0:
                 return matches, n_rest
+        #======================
     return matches, n_rest
 
 
