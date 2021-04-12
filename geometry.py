@@ -9,11 +9,13 @@ def OnLine(points):
     for i in range(2,len(points)):
         A1, B1, C1 = Line(points[0], points[i])
         # 2 3 5    4 6 10
-        k=С1/C
+        if  A!= 0:
+            k = A1 / A
+        else:
+            k = B1 / B
         A=A*k
         B=B*k
         C=C*k
         if A!=A1 or B!=B1:
             return False
     return True
-
