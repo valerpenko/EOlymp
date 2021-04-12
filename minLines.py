@@ -5,7 +5,8 @@ def FindBestLine(allPoints):
  points.append(allPoints[1])
  maxpoints=points.copy()
  while(True):
-   if(!inrange(points):
+   # if (!inrange(points):
+   if not range(points):
      point=branch(point)
    elif geometry.OnLine(points):
      points=grow(points)
