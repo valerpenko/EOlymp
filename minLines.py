@@ -38,4 +38,6 @@ def FindBestLine(allPoints):
      indices=nextIndices(indices)
 
 allPoints=[[1,1],[2,2],[3,3],[2,4]]
-FindBestLine(allPoints)
+result = FindBestLine(allPoints)
+
+print(result)
