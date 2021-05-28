@@ -1,6 +1,3 @@
-
-
-
 def DefinePipes():
     city = [[True,True,True,True],
             [False,True,True,True],
@@ -8,16 +5,15 @@ def DefinePipes():
             [False,False,False,True]]
     return city
 
-def Reconstruct():
-    city = DefinePipes()
-    newCity = [list(x) for x in zip(*city)]
+def Reconstruct(city, region):
+    newCity = [list(x) for x in zip(*city)]   # different way
     return newCity
 
 # def SupplyTest():
 
 def Pipes(city):
     for region in range(len(city)):
-        newCity = Reconstruct(region)
+        newCity = Reconstruct(city, region)
         testActive = True
         for activeRegion in range(len(city)):
             if not SupplyTest(activeRegion):
@@ -27,10 +23,8 @@ def Pipes(city):
             return True
     return False
 
-
-
-waterSupply = DefinePipes()
-if Pipes(waterSupply):
+city = DefinePipes()
+if Pipes(city):
     print(1)
 else:
     print(0)
