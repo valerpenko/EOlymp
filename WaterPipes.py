@@ -33,7 +33,7 @@ def SupplyTest(city, region):
 
 def Pipes(city):
     for region in range(len(city)):
-        newCity = Reconstruct(city, region)
+        #newCity = Reconstruct(city, region)
         testActive = True
         for activeRegion in range(len(city)):
             if not SupplyTest(city, activeRegion):
