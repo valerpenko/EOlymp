@@ -19,10 +19,10 @@ def Reconstruct(city, regNum):
         newCity[i][regNum],newCity[regNum][i]=newCity[regNum][i],newCity[i][regNum]
     return newCity
 
-def SupplyTest(region):
+def SupplyTest(newCity,region):
     checklist = []
     count = 0
-    newCity = Reconstruct(city, region)
+    #newCity = Reconstruct(city, region)
     for row in newCity:
         for item in row:
             if item == region and item == True:

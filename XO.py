@@ -2,11 +2,12 @@ def Show(Board):
   for row in Board:
       for cell in row:
           if cell==X:
-              print('X')
+              print('X', end='')
           elif cell == O:
-              print('O')
+              print('O', end='')
           else:
-              print(' ')
+              print('e ', end='')
+      print()
 X=1
 O=0
 Empty=-1
