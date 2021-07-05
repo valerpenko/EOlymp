@@ -1,25 +1,25 @@
-import copy
 def DefinePipes():
     # city = [[True,True,True,True],
     #         [False,True,True,True],
     #         [False,False,True,True],
     #         [False,False,False,True]]
-    citySize, pipeline = DataInput()
+    citySize=int(input())
     city = [[False for i in range(citySize)] for j in range(citySize)]
-    for i in range(len(city)):
-        for j in range(len(city[i])):
-            if city.index(city[i]) == pipeline[i][0]:
-
+    for i in range(citySize):
+        lst=input().split()
+        rowNum=int(lst.pop(0))
+        for el in lst:
+            city[rowNum][int(el)-1]= True
     return city
 
-def dcopy(oldList):
-    newList=[]
-    for el in oldList:
-        newList.append(copy.deepcopy(el))
-    return newList
-
 def Reconstruct(city, regNum):
-    newCity = dcopy(city)
+    newCity=[]
+    for row in range(len(city)):
+        newCity.append([])
+        for col in range(len(city)):
+            newCity[row].append(city[row][col])
+
+#    newCity = dcopy(city)
     for i in range(len(newCity)):
         newCity[i][regNum],newCity[regNum][i]=newCity[regNum][i],newCity[i][regNum]
     return newCity
@@ -70,8 +70,8 @@ def DataInput():
     return citySize, pipeline
 
 
-DataInput()
-print(DataInput())
+# DataInput()
+# print(DataInput())
 city = DefinePipes()
 if CityWaterSupplyExist(city):
     print(1)    #city is well water supplied
