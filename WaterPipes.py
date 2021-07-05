@@ -1,9 +1,15 @@
 import copy
 def DefinePipes():
-    city = [[True,True,True,True],
-            [False,True,True,True],
-            [False,False,True,True],
-            [False,False,False,True]]
+    # city = [[True,True,True,True],
+    #         [False,True,True,True],
+    #         [False,False,True,True],
+    #         [False,False,False,True]]
+    citySize, pipeline = DataInput()
+    city = [[False for i in range(citySize)] for j in range(citySize)]
+    for i in range(len(city)):
+        for j in range(len(city[i])):
+            if city.index(city[i]) == pipeline[i][0]:
+
     return city
 
 def dcopy(oldList):
@@ -50,6 +56,22 @@ def CityWaterSupplyExist(srcCity):
             return True
     return False
 
+# Ctrl - D or Ctrl - Z
+def DataInput():
+    citySize =int(input())
+    temp = []
+    while True:
+        try:
+            line =input().split()
+        except EOFError:
+            break
+        temp.append(line)
+    pipeline = [list(map(int,i)) for i in temp]
+    return citySize, pipeline
+
+
+DataInput()
+print(DataInput())
 city = DefinePipes()
 if CityWaterSupplyExist(city):
     print(1)    #city is well water supplied
