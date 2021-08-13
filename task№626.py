@@ -26,7 +26,14 @@ class SimpleGraph:
       newEdge2 = [src, weight]
       self.graphDict[dest].append(newEdge2)
 
+  def decWeight(self, src, dest):
+    #decrements weight between src and dest by 1
+    #x=self.graphDict[src]
+    pass
 
+  def getWeight(self, src, dest, weight):
+    #!!!
+    pass
 
   def show(self):
     print(self.graphDict)
@@ -36,17 +43,26 @@ class SimpleGraph:
     distance = [9999999999] * self.vertCount
     distance[src] = 0
 
+
+N=7
+M=11
 graph = SimpleGraph(directed=True)
 
-graph.addVertex(1)
-graph.addVertex(2)
-graph.addVertex(3)
-graph.addVertex(4)
+for node in range(1,N+1):
+  graph.addVertex(node)
+for node in range(2, N + 1):
+  graph.addEdge(1, node, N*N//5+1)
 
-graph.addEdge(1, 2, 1)
-graph.addEdge(1, 3, 2)
-graph.addEdge(2, 3, 1)
-graph.addEdge(2, 4, 3)
-graph.addEdge(3, 4, 4)
-graph.addEdge(4, 1, 5)
 graph.show()
+src=2
+dest=src_+1
+for step in range(N,M+1):
+  if dest<N+1:
+    graph.addEdge(src, dest, 1)
+    decWeight(1, src)
+    dest+=1
+  else:
+    src+=1
+    dest=dest+1
+    graph.addEdge(src, dest, 1)
+    decWeight(1, src)
