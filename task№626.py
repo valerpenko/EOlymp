@@ -28,41 +28,75 @@ class SimpleGraph:
 
   def decWeight(self, src, dest):
     #decrements weight between src and dest by 1
-    #x=self.graphDict[src]
-    pass
+    for value in self.graphDict[src]:
+      if value[0] == dest:
+        value[1] = value[1] - 1
 
-  def getWeight(self, src, dest, weight):
-    #!!!
-    pass
+  def getWeight(self, src, dest):#weight
+    for value in self.graphDict[src]:
+      if value[0] == dest:
+        return value[1]
 
   def show(self):
     print(self.graphDict)
 
-  def Dijkstras_Shortest_Path(self, src):
+  # def Dijkstras_Shortest_Path(self, src):
+  #
+  #   distance = [9999999999] * self.vertCount
+  #   distance[src] = 0
+
+  def BellmanFord(self, src):
 
     distance = [9999999999] * self.vertCount
     distance[src] = 0
 
+    for u in self.graphDict:
+      for [v,w] in self.graphDict[u]:
+        if distance[u] != 9999999999 and distance[u] + w < distance[v]:
+          distance[v] = distance[u] + w
 
-N=7
-M=11
+    # for src in self.graphDict:
+    #   for [v,w] in self.graphDict[src]:
+    #     if distance[src] != 9999999999 and distance[src] + w < distance[v]:
+    #       print("Graph contains negative cycle")
+
+    return distance
+
+# N=7
+# M=11
+# graph = SimpleGraph(directed=True)
+#
+# for node in range(1,N+1):
+#   graph.addVertex(node)
+# for node in range(2, N + 1):
+#   graph.addEdge(1, node, N*N//5+1)
+#
+# graph.show()
+# src = 2
+# dest = src + 1
+# for step in range(N,M+1):
+#   if dest<N+1:
+#     graph.addEdge(src, dest, 1)
+#     graph.decWeight(1, src)
+#     dest+=1
+#   else:
+#     src+=1
+#     dest=dest+1
+#     graph.addEdge(src, dest, 1)
+#     graph.decWeight(1, src)
+# graph.show()
+
 graph = SimpleGraph(directed=True)
-
-for node in range(1,N+1):
-  graph.addVertex(node)
-for node in range(2, N + 1):
-  graph.addEdge(1, node, N*N//5+1)
-
+graph.addVertex(1)
+graph.addVertex(2)
+graph.addVertex(3)
+graph.addVertex(4)
+graph.addVertex(5)
+graph.addEdge(1, 2, 4)
+graph.addEdge(2, 1, 3)
+graph.addEdge(2, 5, 3)
+graph.addEdge(3, 2, 2)
+graph.addEdge(4, 1, 1)
+graph.addEdge(5, 3, 2)
 graph.show()
-src=2
-dest=src_+1
-for step in range(N,M+1):
-  if dest<N+1:
-    graph.addEdge(src, dest, 1)
-    decWeight(1, src)
-    dest+=1
-  else:
-    src+=1
-    dest=dest+1
-    graph.addEdge(src, dest, 1)
-    decWeight(1, src)
+print(graph.BellmanFord(2))
