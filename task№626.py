@@ -40,10 +40,6 @@ class SimpleGraph:
   def show(self):
     print(self.graphDict)
 
-  # def Dijkstras_Shortest_Path(self, src):
-  #
-  #   distance = [9999999999] * self.vertCount
-  #   distance[src] = 0
 
   def BellmanFord(self, src):
 
