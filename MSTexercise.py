@@ -1,33 +1,17 @@
-
-class Graph:
-
-    def __init__(self, vertCount, directed = False):
-        self.graphMatrix = []
-        self.vertCount = vertCount
-        self.directed = directed
-        for i in range(vertCount):
-            self.graphMatrix.append([0 for i in range(vertCount)])
-
-    def addEdge(self, vert1, vert2, weight):
-        if vert1 == vert2:
-            self.graphMatrix[vert1][vert2] = 0
-        elif self.directed:
-            self.graphMatrix[vert1][vert2] = weight
-        else:
-            self.graphMatrix[vert1][vert2] = weight
-            self.graphMatrix[vert2][vert1] = weight
-
-    def show(self):
-        for row in self.graphMatrix:
-            print(row)
-
 def Update(Q,D):
     # обновляет Q на основании D
     # в Q должны находиться номера вершин в порядке возрастания их D
-    pass
-def MST_Prim_Jarnik(graph):
+    Q2=[Q[0]]
+    for i in range(1,len(Q)):
+        if  D[i]<D[Q2[0]]:
+            Q2.insert(0, Q[i])  # в начало
+        else:
+            Q2.append(Q[i])
+    Q=Q2
+
+def MST_Prim_Jarnik(graphMatrix):
     Infinity=100000000
-    D= graph.vertCount*[Infinity]
+    D= len(graphMatrix)*[Infinity]
     D[0]=0
     Q=[i for i in range(0,len(D))]
     S=0
@@ -36,22 +20,20 @@ def MST_Prim_Jarnik(graph):
         u=Q[0]
         Q=Q[1:]
         #for each edge e′ = (u,v) such that v is in Q do
-           if graph.graphMatrix[u,v]<D[v]:
+        for v in Q:
+           if graphMatrix[u][v]>0 and graphMatrix[u][v]<D[v]:  #v u ???
                if D[v]==Infinity:
-                   D[v]=graph.graphMatrix[u,v]
+                   D[v]=graphMatrix[u][v]
                    S+=D[v]
                else:
-                   S=S-D[v]+graph.graphMatrix[u,v]
-                   D[v] = graph.graphMatrix[u, v]
+                   S=S-D[v]+graphMatrix[u][v]
+                   D[v] = graphMatrix[u, v]
         Update(Q,D)
     return S
-    
-graph = Graph(5, directed=False)
 
-graph.addEdge(0, 1, 4)
-graph.addEdge(1, 4, 3)
-graph.addEdge(2, 1, 2)
-graph.addEdge(3, 0, 1)
-graph.addEdge(4, 2, 2)
-graph.show()
-print(MST_Prim_Jarnik(graph))
+[vertices, edges] = map(int, input().split())
+graphMatrix=[ [ 0 for col in range(0,vertices)] for row in range(0,vertices) ]
+for i in range(0,edges):
+    [vertice1, vertice2, weight] = map(int, input().split())
+    graphMatrix[vertice1-1][vertice2-1]=weight
+print(MST_Prim_Jarnik(graphMatrix))
